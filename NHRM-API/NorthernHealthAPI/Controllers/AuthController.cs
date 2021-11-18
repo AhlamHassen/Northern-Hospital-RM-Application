@@ -54,11 +54,11 @@ namespace NorthernHealthAPI.Controllers
             {
                 var passwordHash = SHA512.Create();
 
-                passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.Salt + Environment.GetEnvironmentVariable("pepper")));
+                passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.Salt + "this15myp3pper"));
 
                 if (passwordHash.Hash.SequenceEqual(patient.Password))
                 {
-                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("thisismytemporarysecretkey"));
                     var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                     var claims = new[] {
@@ -67,8 +67,8 @@ namespace NorthernHealthAPI.Controllers
                 };
 
                     var tokenOptions = new JwtSecurityToken(
-                        issuer: Environment.GetEnvironmentVariable("applicationUrl"),
-                        audience: Environment.GetEnvironmentVariable("applicationUrl"),
+                        issuer: "http://patient-application.s3-website-us-east-1.amazonaws.com/",
+                        audience: "http://patient-application.s3-website-us-east-1.amazonaws.com/",
                         claims: claims,
                         expires: DateTime.Now.AddDays(5),
                         signingCredentials: signinCredentials

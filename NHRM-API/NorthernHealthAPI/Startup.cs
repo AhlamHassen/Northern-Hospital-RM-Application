@@ -5,19 +5,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NorthernHealthAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace NorthernHealthAPI
 {
     public class Startup
     {
 
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             //Add JWT Middleware when ready
             JWT.JWTMiddleware.ConfigureJWT(services);
 
-            services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection")));
-            //services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer("Server=.\\SQLExpress;Database=NHRMDB;Trusted_Connection=True;"));
+            services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("NHRMConnectionString")));            
 
             services.AddControllers();
             services.AddCors(options =>
@@ -42,7 +48,7 @@ namespace NorthernHealthAPI
             app.UseCors();
 
             //May need to configure middleware for HTTPS redirection
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

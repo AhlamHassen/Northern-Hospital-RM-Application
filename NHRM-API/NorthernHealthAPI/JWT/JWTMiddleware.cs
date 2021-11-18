@@ -23,9 +23,9 @@ namespace NorthernHealthAPI.JWT
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = Environment.GetEnvironmentVariable("applicationUrl"),
-                    ValidAudience = Environment.GetEnvironmentVariable("applicationUrl"),
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")))
+                    ValidIssuer = "http://patient-application.s3-website-us-east-1.amazonaws.com/",//Environment.GetEnvironmentVariable("applicationUrl"),
+                    ValidAudience = "http://patient-application.s3-website-us-east-1.amazonaws.com/", //Environment.GetEnvironmentVariable("applicationUrl"),
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("thisismytemporarysecretkey")) //new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")))
                 };
             });
         }
