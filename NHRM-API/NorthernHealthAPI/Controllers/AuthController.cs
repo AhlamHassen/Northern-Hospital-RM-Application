@@ -67,7 +67,7 @@ namespace NorthernHealthAPI.Controllers
                 };
 
                     var tokenOptions = new JwtSecurityToken(
-                        issuer: "http://patient-application.s3-website-us-east-1.amazonaws.com/",
+                        issuer: "http://northernhealthapi-patient-dev.us-east-1.elasticbeanstalk.com/",
                         audience: "http://patient-application.s3-website-us-east-1.amazonaws.com/",
                         claims: claims,
                         expires: DateTime.Now.AddDays(5),

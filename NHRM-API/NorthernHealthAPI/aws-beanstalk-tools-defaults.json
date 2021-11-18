@@ -8,7 +8,7 @@
     "environment"    : "NorthernHealthAPI-Patient-dev",
     "enable-xray"    : false,
     "enhanced-health-type" : "basic",
-    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-02ae9c47776ef2f13,sg-015a02ea395893959\";\"aws:ec2:vpc,Subnets\"=\"subnet-09c75853b338ebcba\"",
+    "additional-options"   : "",
     "solution-stack"       : "64bit Amazon Linux 2 v2.2.7 running .NET Core",
     "environment-type"     : "SingleInstance",
     "cname"                : "northernhealthapi-patient-dev",
