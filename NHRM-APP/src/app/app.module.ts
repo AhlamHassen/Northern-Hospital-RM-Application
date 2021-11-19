@@ -111,7 +111,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['http://northernhealthapi-patient-dev.us-east-1.elasticbeanstalk.com']
+        allowedDomains: ["northernhealthapi-patient-dev.us-east-1.elasticbeanstalk.com"]
       }
     })
   ],
